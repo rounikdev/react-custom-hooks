@@ -32,7 +32,7 @@ describe('useOnOutsideClick', () => {
 
     userEvent.click(getByDataTest('outside-element'));
 
-    // TODO
+    // TODO React 18
     // expect(mockCallback).toHaveBeenCalledTimes(1);
   });
 
