@@ -16,6 +16,7 @@ export const useWindowResize = ({ callback }: { callback: ResizeObserverCallback
     window.addEventListener('resize', onWindowResizeRef.current);
   });
 
+  // Remove listener
   useUnmount(() => {
     if (onWindowResizeRef.current) {
       window.removeEventListener('resize', onWindowResizeRef.current);
