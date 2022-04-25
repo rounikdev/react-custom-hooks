@@ -39,6 +39,7 @@ describe('useMutationObserver', () => {
 
     expect(mockObserverCallback).toHaveBeenCalledTimes(0);
 
+    // TODO
     // await waitFor(() => {
     //   // eslint-disable-next-line testing-library/no-wait-for-side-effects
     //   userEvent.click(getByDataTest('button'));
