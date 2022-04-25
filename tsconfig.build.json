@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "declaration": true,
+    "declarationDir": "lib/dts",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "lib",
+    "paths": {
+      "@services": ["./services"],
+      "@services/*": ["./services/*"]
+    },
+    "strict": true,
+    "target": "ES2015"
+  },
+  "files": ["./src/index.ts"],
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules", "src/**/*.test.ts"],
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
+}
+
