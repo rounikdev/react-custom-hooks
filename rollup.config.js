@@ -26,13 +26,6 @@ export default [
         dir: `${outputFolder}/cjs`,
         format: 'cjs',
         sourcemap: false
-      },
-      {
-        dir: outputFolder,
-        format: 'esm',
-        preserveModules: true,
-        preserveModulesRoot: sourceRoot,
-        sourcemap: false
       }
     ],
     plugins: [
@@ -62,7 +55,7 @@ export default [
   },
   // This config will combine all d.ts files
   // created by the previous config into
-  // a single 'index.d.ts' file in the 'dist'
+  // a single 'index.d.ts' file in the 'lib'
   // folder:
   {
     // Path to your declaration files root
