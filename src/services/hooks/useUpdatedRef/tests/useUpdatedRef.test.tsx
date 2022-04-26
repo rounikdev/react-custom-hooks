@@ -5,7 +5,7 @@ import { testRender } from '@services/utils';
 import { useUpdatedRef } from '../useUpdatedRef';
 
 describe('useUpdatedRef', () => {
-  it('Returns updated ref value without re-rendering the host component', () => {
+  it('Returns updated ref value without re-rendering the host component ', () => {
     const TestComponent: FC<{ otherProp: string; value: string }> = ({ otherProp, value }) => {
       const ref = useUpdatedRef(value);
 

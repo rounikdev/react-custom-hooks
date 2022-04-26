@@ -26,6 +26,11 @@ export default [
         dir: `${outputFolder}/cjs`,
         format: 'cjs',
         sourcemap: false
+      },
+      {
+        dir: outputFolder,
+        format: 'esm',
+        sourcemap: false
       }
     ],
     plugins: [
