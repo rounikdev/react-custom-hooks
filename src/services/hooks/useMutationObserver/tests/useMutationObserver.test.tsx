@@ -39,14 +39,11 @@ describe('useMutationObserver', () => {
 
     expect(mockObserverCallback).toHaveBeenCalledTimes(0);
 
-    // TODO
-    // await waitFor(() => {
-    //   // eslint-disable-next-line testing-library/no-wait-for-side-effects
-    //   userEvent.click(getByDataTest('button'));
-    // });
-
-    // TODO
-    // expect(mockObserverCallback).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      // eslint-disable-next-line testing-library/no-wait-for-side-effects
+      userEvent.click(getByDataTest('button'));
+      expect(mockObserverCallback).toHaveBeenCalledTimes(1);
+    });
   });
 
   it("Doesn't call callback if no target", async () => {

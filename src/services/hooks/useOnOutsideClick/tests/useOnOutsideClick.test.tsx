@@ -1,4 +1,5 @@
 import { FC, useRef } from 'react';
+import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { testRender } from '@services/utils';
@@ -6,7 +7,7 @@ import { testRender } from '@services/utils';
 import { useOnOutsideClick } from '../useOnOutsideClick';
 
 describe('useOnOutsideClick', () => {
-  it('Calls a callback only if click is outside of a specified target', () => {
+  it('Calls a callback only if click is outside of a specified target', async () => {
     const mockCallback = jest.fn();
 
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
@@ -31,9 +32,7 @@ describe('useOnOutsideClick', () => {
     expect(mockCallback).toHaveBeenCalledTimes(0);
 
     userEvent.click(getByDataTest('outside-element'));
-
-    // TODO React 18
-    // expect(mockCallback).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(mockCallback).toHaveBeenCalledTimes(1));
   });
 
   it("Doesn't calls a callback if no current element", () => {
