@@ -1,6 +1,6 @@
 {
   "name": "@rounik/react-custom-hooks",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Collection of React custom hooks",
   "keywords": [
     "React",
@@ -82,6 +82,7 @@
     "jest": "28.0.0",
     "jest-environment-jsdom": "^28.0.0",
     "prettier": "2.6.2",
+    "resize-observer-polyfill": "^1.5.1",
     "rollup": "2.70.2",
     "rollup-plugin-auto-external": "2.0.0",
     "rollup-plugin-cleaner": "1.0.0",

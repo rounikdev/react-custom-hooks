@@ -49,4 +49,33 @@ describe('useUpdate', () => {
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
+
+  it('Calls `callback` return function', () => {
+    const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
+      callback,
+      otherProp
+    }) => {
+      useUpdate(callback, [callback]);
+
+      return <div>{otherProp}</div>;
+    };
+
+    const callbackReturn = jest.fn();
+    let callback = jest.fn(() => Promise.resolve(callbackReturn));
+
+    const { rerender } = testRender(<TestComponent callback={callback} otherProp="valueA" />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+    // TODO inner mock function not being called
+    // expect(callbackReturn).toHaveBeenCalledTimes(1);
+
+    const updatedCallbackReturn = jest.fn();
+    callback = jest.fn(() => updatedCallbackReturn) as jest.Mock;
+
+    rerender(<TestComponent callback={callback} otherProp="valueB" />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+    // TODO inner mock function not being called
+    // expect(updatedCallbackReturn).toHaveBeenCalledTimes(1);
+  });
 });

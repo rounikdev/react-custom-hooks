@@ -5,10 +5,8 @@ import { UseOnOutsideClickConfig } from '../types';
 export const useOnOutsideClick = ({ callback, element }: UseOnOutsideClickConfig): void => {
   const onDocumentClickHandler = useCallback(
     (event: MouseEvent) => {
-      if (element.current) {
-        if (!element.current.contains(event.target as Node)) {
-          callback();
-        }
+      if (element.current && !element.current.contains(event.target as Node)) {
+        callback();
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

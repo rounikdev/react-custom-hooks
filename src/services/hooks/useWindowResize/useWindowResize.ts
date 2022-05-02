@@ -5,13 +5,19 @@ import { GlobalModel } from '@services/models';
 import { useMount } from '../useMount/useMount';
 import { useUnmount } from '../useUnmount/useUnmount';
 
-const WINDOW_ON_RESIZE_DEBOUNCE_TIME = 200;
+type ResizeListener = (this: Window, ev: UIEvent) => void;
 
-export const useWindowResize = ({ callback }: { callback: ResizeObserverCallback }) => {
-  const onWindowResizeRef = useRef<((this: Window, ev: UIEvent) => void) | null>(null);
+export const useWindowResize = ({
+  callback,
+  debounceTime
+}: {
+  callback: ResizeObserverCallback;
+  debounceTime: number; // milliseconds
+}) => {
+  const onWindowResizeRef = useRef<ResizeListener>();
 
   useMount(() => {
-    onWindowResizeRef.current = GlobalModel.debounceRAF(callback, WINDOW_ON_RESIZE_DEBOUNCE_TIME);
+    onWindowResizeRef.current = GlobalModel.debounceRAF(callback, debounceTime);
 
     window.addEventListener('resize', onWindowResizeRef.current);
   });

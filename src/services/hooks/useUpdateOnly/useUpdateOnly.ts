@@ -12,7 +12,17 @@ export const useUpdateOnly = (callback: UpdateCallback, dependencyList: Dependen
       return;
     }
 
-    callback();
+    const result = callback();
+
+    return () => {
+      (async () => {
+        const func = await result;
+
+        if (typeof func === 'function') {
+          func();
+        }
+      })();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencyList);
 };
