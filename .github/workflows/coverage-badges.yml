@@ -3,7 +3,7 @@ name: Create coverage badges
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
