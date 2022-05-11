@@ -1,12 +1,21 @@
-# react-custom-hooks
+# @rounik/react-custom-hooks
 
 Collection of React custom hooks
+
+## Unit tests coverage
+
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/rounikdev/edb83177b0281c3232346072ec773358/raw/coverage-unit-statements.json)
+
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/rounikdev/edb83177b0281c3232346072ec773358/raw/coverage-unit-branches.json)
+
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/rounikdev/edb83177b0281c3232346072ec773358/raw/coverage-unit-functions.json)
+
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/rounikdev/edb83177b0281c3232346072ec773358/raw/coverage-unit-lines.json)
 
 ## Technologies:
 
 - [React](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
-- [Yarn](https://yarnpkg.com/)
 - [Jest](https://github.com/kulshekhar/ts-jest)
 - [React Testing Library](https://testing-library.com/)
 

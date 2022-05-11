@@ -1,3 +1,16 @@
+# [0.1.5]() - 2022-05-11
+
+### Added
+
+- Coverage badges github workflow
+
+### Dependencies
+
+- Update dependencies to fix tests warnings:
+- "@testing-library/react": "12.1.5",
+- "@testing-library/react-hooks": "7.0.2",
+- "@testing-library/user-event": "13.5.0",
+
 # [0.1.4]() - 2022-05-11
 
 ### Downgrade
