@@ -5,16 +5,11 @@ import { testRender } from '@services/utils';
 import { useIsNotRendered } from '../useIsNotRendered';
 
 describe('useIsRendered', () => {
-  it('Provides the correct rendered state', () => {
+  it('Executes callback before initial render', () => {
     const mockCallback = jest.fn();
 
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
-      // eslint-disable-next-line testing-library/render-result-naming-convention
-      const isRendered = useIsNotRendered({ callback });
-
-      if (!isRendered) {
-        callback();
-      }
+      useIsNotRendered({ callback });
 
       return null;
     };

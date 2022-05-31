@@ -1,3 +1,11 @@
+# [0.1.6]() - 2022-05-31
+
+### Added
+
+- `useContextReducer` hook
+- `useIsNotRendered` hook
+- `useNewDiffValue` hook
+
 # [0.1.5]() - 2022-05-11
 
 ### Added

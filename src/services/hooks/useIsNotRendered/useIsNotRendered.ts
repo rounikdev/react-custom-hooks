@@ -8,6 +8,4 @@ export const useIsNotRendered = ({ callback }: { callback: () => void }) => {
 
     isRenderedRef.current = true;
   }
-
-  return isRenderedRef.current;
 };
