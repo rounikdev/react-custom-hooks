@@ -1,11 +1,14 @@
 export * from './types';
 
 export * from './useClass/useClass';
+export * from './useContextReducer/useContextReducer';
 export * from './useIsMounted/useIsMounted';
+export * from './useIsNotRendered/useIsNotRendered';
 export * from './useKeyboardEvent/useKeyboardEvent';
 export * from './useLastDiffValue/useLastDiffValue';
 export * from './useMount/useMount';
 export * from './useMutationObserver/useMutationObserver';
+export * from './useNewDiffValue/useNewDiffValue';
 export * from './useOnOutsideClick/useOnOutsideClick';
 export * from './usePrevious/usePrevious';
 export * from './useResizeObserver/useResizeObserver';
