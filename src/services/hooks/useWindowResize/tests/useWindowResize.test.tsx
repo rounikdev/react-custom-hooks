@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { waitFor } from '@testing-library/react';
 
 import { testRender } from '@services/utils';
 
