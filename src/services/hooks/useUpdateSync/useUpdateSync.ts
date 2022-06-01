@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export const useNewDiffValue = <T>({ callback, value }: { callback: () => void; value: T }) => {
+export const useUpdateSync = (callback: () => void, value: unknown) => {
   const refDiff = useRef(value);
 
   if (value !== refDiff.current) {

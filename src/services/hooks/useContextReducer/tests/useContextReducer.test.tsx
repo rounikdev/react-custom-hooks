@@ -83,6 +83,7 @@ export const ItemsProvider: FC<{
   children: ReactNode;
 }> = ({ children }): JSX.Element => {
   const { value } = useContextReducer({
+    actions: initialContextState.actions,
     actionTypes: ACTION_TYPES,
     initialState,
     reducer

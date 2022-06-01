@@ -2,14 +2,14 @@ import { FC } from 'react';
 
 import { testRender } from '@services/utils';
 
-import { useIsNotRendered } from '../useIsNotRendered';
+import { useBeforeFirstRender } from '../useBeforeFirstRender';
 
-describe('useIsRendered', () => {
+describe('useBeforeFirstRender', () => {
   it('Executes callback before initial render', () => {
     const mockCallback = jest.fn();
 
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
-      useIsNotRendered({ callback });
+      useBeforeFirstRender(callback);
 
       return null;
     };

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-export const useIsNotRendered = ({ callback }: { callback: () => void }) => {
+export const useBeforeFirstRender = (callback: () => void) => {
   const isRenderedRef = useRef(false);
 
   if (!isRenderedRef.current) {
