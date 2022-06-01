@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import { testRender } from '@services/utils';
 
-import { useNewDiffValue } from '../useNewDiffValue';
+import { useUpdateSync } from '../useUpdateSync';
 
 describe('useNewDiffValue', () => {
   it('Executes callback on new diff of value', () => {
@@ -12,7 +12,7 @@ describe('useNewDiffValue', () => {
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
       const [value, setValue] = useState({});
 
-      useNewDiffValue({ callback, value });
+      useUpdateSync(callback, value);
 
       return (
         <button data-test="button-update" onClick={() => setValue({})}>

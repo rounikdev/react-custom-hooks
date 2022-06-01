@@ -21,20 +21,20 @@ Collection of React custom hooks
 
 ## Contents:
 
-1. useClass
-2. useContextReducer
-3. useIsMounted
-4. useIsNotRendered
-5. useKeyboardEvent
-6. useLastDiffValue
-7. useMount
-8. useMutationObserver
-9. useNewDiffValue
+1. useBeforeFirstRender
+2. useClass
+3. useContextReducer
+4. useIsMounted
+5. useIsNotRendered
+6. useKeyboardEvent
+7. useLastDiffValue
+8. useMount
+9. useMutationObserver
 10. useOnOutsideClick
-11. usePrevious
-12. useResizeObserver
-13. useUnmount
-14. useUpdate
-15. useUpdatedRef
-16. useUpdateOnly
+11. useResizeObserver
+12. useUnmount
+13. useUpdate
+14. useUpdatedRef
+15. useUpdateOnly
+16. useUpdateSync
 17. useWindowResize

@@ -1,3 +1,11 @@
+# [0.1.8]() - 2022-06-01
+
+### Fixed
+
+- Rename and update `useIsNotRendered` to `useBeforeFirstRender`.
+- Rename and update `useNewDiffValue` to `useUpdateSync`.
+- Update `useUpdatedRef` using `useUpdateSync`.
+
 # [0.1.7]() - 2022-05-31
 
 ### Added

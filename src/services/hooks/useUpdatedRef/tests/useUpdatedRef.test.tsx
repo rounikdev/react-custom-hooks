@@ -26,10 +26,6 @@ describe('useUpdatedRef', () => {
 
     expect(getByDataTest('value')).toHaveTextContent(valueA);
 
-    rerender(<TestComponent otherProp="otherPropA" value={valueB} />);
-
-    expect(getByDataTest('value')).toHaveTextContent(valueA);
-
     rerender(<TestComponent otherProp="otherPropB" value={valueB} />);
 
     expect(getByDataTest('value')).toHaveTextContent(valueB);

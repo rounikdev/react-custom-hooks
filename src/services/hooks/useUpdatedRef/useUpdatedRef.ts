@@ -1,11 +1,13 @@
-import { MutableRefObject, useEffect, useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
+
+import { useUpdateSync } from '../useUpdateSync/useUpdateSync';
 
 export const useUpdatedRef = <T>(value: T): MutableRefObject<T> => {
   const ref = useRef(value);
 
-  useEffect(() => {
+  useUpdateSync(() => {
     ref.current = value;
-  }, [value]);
+  }, value);
 
   return ref;
 };

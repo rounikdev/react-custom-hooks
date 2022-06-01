@@ -1,18 +1,18 @@
 import { useMemo, useReducer } from 'react';
 
-export const useContextReducer = <T, R, M>({
+export const useContextReducer = <F, T, R, M>({
   actionTypes,
   initialState,
   reducer
 }: {
-  actionTypes: { [key: string]: M };
+  actions: F;
+  actionTypes: Record<string, M>;
   initialState: T;
   reducer: (state: T, action: R) => T;
 }): {
   value: {
     state: T;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    actions: any;
+    actions: F;
   };
 } => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -20,12 +20,12 @@ export const useContextReducer = <T, R, M>({
   const newActions = useMemo(
     () =>
       Object.keys(actionTypes).reduce((accum, actionName) => {
-        accum[actionName] = (payload) => {
+        (accum as unknown as { [key: string]: keyof F })[actionName] = ((payload: unknown) => {
           dispatch({ payload, type: actionTypes[actionName] } as unknown as R);
-        };
+        }) as unknown as keyof F;
 
         return accum;
-      }, {} as { [key: string]: (payload: unknown) => void }),
+      }, {} as F),
 
     [actionTypes]
   );
