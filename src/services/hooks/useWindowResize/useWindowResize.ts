@@ -24,6 +24,8 @@ export const useWindowResize = ({
 
   // Remove listener
   useUnmount(() => {
-    onWindowResizeRef.current && window.removeEventListener('resize', onWindowResizeRef.current);
+    if (onWindowResizeRef.current) {
+      window.removeEventListener('resize', onWindowResizeRef.current);
+    }
   });
 };

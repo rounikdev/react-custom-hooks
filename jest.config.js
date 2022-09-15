@@ -5,16 +5,16 @@ module.exports = {
   coverageThreshold: {
     global: {
       branches: 75,
-      functions: 80,
+      functions: 85,
       lines: 80,
       statements: 80
     }
   },
   globalSetup: './jest-global-setup.js',
-  reporters: ['default'],
   moduleNameMapper: {
     '^@services(.*)$': '<rootDir>/src/services$1'
   },
+  reporters: ['default'],
   setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [],

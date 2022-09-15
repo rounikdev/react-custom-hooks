@@ -20,10 +20,9 @@
   },
   "files": ["./src/index.ts"],
   "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules", "src/**/*.test.ts"],
+  "exclude": ["node_modules", "src/**/*.test.ts", "src/services/utils"],
   "typedocOptions": {
     "entryPoints": ["src/index.ts"],
     "out": "docs"
   }
 }
-

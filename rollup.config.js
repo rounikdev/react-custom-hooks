@@ -20,6 +20,7 @@ export default [
   // This config builds the package
   // and the d.ts files:
   {
+    external: ['typescript'],
     input: [`${sourceRoot}/index.ts`],
     output: [
       {
@@ -55,8 +56,7 @@ export default [
       visualizer({
         filename: 'bundle-analysis.html'
       })
-    ],
-    external: ['typescript']
+    ]
   },
   // This config will combine all d.ts files
   // created by the previous config into
@@ -79,4 +79,3 @@ export default [
     ]
   }
 ];
-
