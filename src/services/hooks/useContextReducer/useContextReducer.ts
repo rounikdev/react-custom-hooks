@@ -5,14 +5,14 @@ export const useContextReducer = <F, T, R, M>({
   initialState,
   reducer
 }: {
-  actions: F;
   actionTypes: Record<string, M>;
+  actions: F;
   initialState: T;
   reducer: (state: T, action: R) => T;
 }): {
   value: {
-    state: T;
     actions: F;
+    state: T;
   };
 } => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -30,7 +30,7 @@ export const useContextReducer = <F, T, R, M>({
     [actionTypes]
   );
 
-  const newValue = useMemo(() => ({ state, actions: newActions }), [newActions, state]);
+  const newValue = useMemo(() => ({ actions: newActions, state }), [newActions, state]);
 
   return { value: newValue };
 };
