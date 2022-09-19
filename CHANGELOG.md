@@ -1,3 +1,12 @@
+# [0.1.10]() - 2022-09-20
+
+### Added
+
+- `useMountSafe` hook
+- `useUnmountSafe` hook
+- `useUpdateOnlyCompare` hook
+- `useUpdateOnlySafe` hook
+
 # [0.1.8]() - 2022-06-01
 
 ### Fixed

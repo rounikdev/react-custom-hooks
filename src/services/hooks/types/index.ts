@@ -28,3 +28,5 @@ export type UseResizeObserverConfig = {
   callback: ResizeObserverCallback;
   target: RefObject<HTMLElement>;
 };
+
+export type Comparator<T, R> = ({ newValue, prevValue }: { newValue: T; prevValue: R }) => boolean;

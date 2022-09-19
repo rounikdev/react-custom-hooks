@@ -1,6 +1,6 @@
 {
   "name": "@rounik/react-custom-hooks",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Collection of React custom hooks",
   "keywords": [
     "React",
@@ -112,5 +112,8 @@
   "peerDependencies": {
     "react": ">=17.0.2",
     "typescript": ">=4.6.4"
+  },
+  "dependencies": {
+    "dequal": "^2.0.3"
   }
 }
