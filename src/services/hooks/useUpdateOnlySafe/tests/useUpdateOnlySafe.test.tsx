@@ -12,8 +12,6 @@ describe('useUpdateOnlySafe', () => {
     }) => {
       useUpdateOnlySafe(callback, [callback]);
 
-      console.log('CALLED');
-
       return <div>{otherProp}</div>;
     };
 

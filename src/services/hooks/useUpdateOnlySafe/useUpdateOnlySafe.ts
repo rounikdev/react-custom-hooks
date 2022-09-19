@@ -26,7 +26,6 @@ export const useUpdateOnlySafe = (
         const func = await result;
 
         if (typeof func === 'function') {
-          console.log('HERE');
           func();
         }
       })();

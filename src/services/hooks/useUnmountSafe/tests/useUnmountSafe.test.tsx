@@ -17,7 +17,7 @@ describe('useUnmountSafe', () => {
 
     const callback = jest.fn();
 
-    const { rerender } = testRender(
+    const { unmount } = testRender(
       <ShowHide data="someClass" show={true}>
         {(show, data) => {
           return show ? <TestComponent callback={callback} className={data} /> : null;
@@ -27,23 +27,7 @@ describe('useUnmountSafe', () => {
 
     expect(callback).toHaveBeenCalledTimes(0);
 
-    rerender(
-      <ShowHide data="anotherClass" show={true}>
-        {(show, data) => {
-          return show ? <TestComponent callback={callback} className={data} /> : null;
-        }}
-      </ShowHide>
-    );
-
-    expect(callback).toHaveBeenCalledTimes(0);
-
-    rerender(
-      <ShowHide data="anotherClass" show={false}>
-        {(show, data) => {
-          return show ? <TestComponent callback={callback} className={data} /> : null;
-        }}
-      </ShowHide>
-    );
+    unmount();
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
