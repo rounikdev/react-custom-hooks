@@ -70,6 +70,7 @@
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.37.0",
     "babel-jest": "29.0.3",
+    "dequal": "2.0.3",
     "eslint": "8.23.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
@@ -112,8 +113,5 @@
   "peerDependencies": {
     "react": ">=17.0.2",
     "typescript": ">=4.6.4"
-  },
-  "dependencies": {
-    "dequal": "^2.0.3"
   }
 }
