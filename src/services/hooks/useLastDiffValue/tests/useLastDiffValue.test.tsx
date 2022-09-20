@@ -35,6 +35,11 @@ describe('useLastDiffValue', () => {
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(await findByText('value: 1 prevValue: 0')).toBeInTheDocument();
+
+    userEvent.click(btnUpdate);
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(await findByText('value: 2 prevValue: 1')).toBeInTheDocument();
   });
 
   it('Returns expected `prevValue` without `comparator`', async () => {
@@ -62,5 +67,36 @@ describe('useLastDiffValue', () => {
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(await findByText('value: 2 prevValue: 0')).toBeInTheDocument();
+  });
+
+  it.only('Returns expected `prevValue` with `comparator` true', async () => {
+    const TestCmp: FC<{
+      value: number;
+    }> = ({ value }) => {
+      const prevValue = useLastDiffValue(value);
+
+      console.log(typeof prevValue, prevValue);
+
+      return (
+        <p data-test="read-value">
+          value: {value} prevValue: {prevValue}
+        </p>
+      );
+    };
+
+    const { findByText, getByDataTest, rerender } = testRender(<TestCmp value={1} />);
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(await findByText('value: 1 prevValue:')).toBeInTheDocument();
+
+    rerender(<TestCmp value={2} />);
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(await findByText('value: 2 prevValue: 1')).toBeInTheDocument();
+
+    rerender(<TestCmp value={2} />);
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    expect(await findByText('value: 2 prevValue:')).toBeInTheDocument();
   });
 });

@@ -1,46 +1,82 @@
-import { DependencyList, useEffect, useRef } from 'react';
+import { DependencyList, useEffect, useRef, useMemo, useCallback } from 'react';
 import { dequal } from 'dequal';
 
 import { Comparator, UpdateCallback } from '../types';
 
-export const useUpdateOnlyCompare = (
+interface HasDiff<T> {
+  comparator?: boolean | Comparator<T, T>;
+  prevValue: T;
+  value: T;
+}
+
+const hasDiff = ({ comparator, prevValue, value }: HasDiff<DependencyList>) => {
+  let hasChange: boolean;
+
+  if (typeof comparator === 'function') {
+    hasChange = comparator({
+      newValue: value,
+      prevValue: prevValue
+    });
+  } else if (comparator) {
+    hasChange = !dequal(prevValue, value);
+  } else {
+    hasChange = value.some((dep, depIndex) => dep !== prevValue[depIndex]);
+  }
+
+  return hasChange;
+};
+
+export const useDependencyList = (
+  dependencyList: DependencyList,
+  comparator?: boolean | Comparator<DependencyList, DependencyList>
+) => {
+  const currentDependencyListRef = useRef(dependencyList);
+
+  if (hasDiff({ comparator, prevValue: currentDependencyListRef.current, value: dependencyList })) {
+    currentDependencyListRef.current = dependencyList;
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo(() => currentDependencyListRef.current, [currentDependencyListRef.current]);
+};
+
+export const useCallbackExtended = <T extends () => void>(
+  callback: T,
+  deps: DependencyList,
+  comparator?: Comparator<DependencyList, DependencyList>
+): T => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useCallback<T>(callback, useDependencyList(deps, comparator));
+};
+
+export const useMemoExtended = <T>(
+  factory: () => T,
+  deps: DependencyList,
+  comparator?: Comparator<DependencyList, DependencyList>
+): T => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  return useMemo<T>(factory, useDependencyList(deps, comparator));
+};
+
+export const useUpdateExtended = (
   callback: UpdateCallback,
   dependencyList: DependencyList,
   comparator?: boolean | Comparator<DependencyList, DependencyList>
 ): void => {
-  const prevDependencyListRef = useRef(dependencyList);
+  const dependencies = useDependencyList(dependencyList, comparator);
 
   useEffect(() => {
-    let hasChange: boolean;
-
-    if (typeof comparator === 'function') {
-      hasChange = comparator({
-        newValue: dependencyList,
-        prevValue: prevDependencyListRef.current
-      });
-    } else if (comparator) {
-      hasChange = !dequal(prevDependencyListRef.current, dependencyList);
-    } else {
-      hasChange = dependencyList.some(
-        (dep, depIndex) => dep !== prevDependencyListRef.current[depIndex]
-      );
-    }
-
-    if (!hasChange) {
-      return;
-    }
-
-    prevDependencyListRef.current = dependencyList;
-
     const result = callback();
 
     return () => {
       (async () => {
-        if (typeof result === 'function') {
-          await result();
+        const func = await result;
+
+        if (typeof func === 'function') {
+          await func();
         }
       })();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencyList);
+  }, dependencies);
 };

@@ -4,37 +4,52 @@ import { UpdateCallback } from '../types';
 
 export const useEffectOnce = (callback: UpdateCallback) => {
   const cleanupCallback = useRef<void | Promise<void> | (() => void)>();
+
   const isEffectCalled = useRef(false);
-  const isRendered = useRef(false);
+
+  const isRenderedAfterEffect = useRef(false);
+
   const [, forceUpdate] = useState({});
 
+  // Because the component is guaranteed
+  // to be rendered once, we block
+  // the first cleanup with the
+  // `isRenderedAfterEffect` flag (row 43)
+  // That's why we need to unblock it (row 37),
+  // ensuring a second rerender
   if (isEffectCalled.current) {
-    isRendered.current = true;
+    isRenderedAfterEffect.current = true;
   }
 
   useEffect(() => {
-    // Only execute the effect first time around
-    // Implements useMount
+    // Executes effect only once
     if (!isEffectCalled.current) {
       cleanupCallback.current = callback();
       isEffectCalled.current = true;
     }
 
-    // This forces one render after the effect is run
-    // Required in order to trigger the cleanupCallback in useUnmount
+    // In StrictMode the component
+    // in which this effect lives
+    // is rendered once but we prevent
+    // the code to the cleanup function.
+    // That's why we need to trigger
+    // another rerender to unblock (row 12)
+    // the final cleanup code
     forceUpdate({});
 
     return () => {
       (async () => {
-        // If the comp didn't render since the useEffect was called,
-        // we know it's the dummy React cycle
-        if (!isRendered.current) {
+        // This prevents cleanup to be called
+        // after the first effect is cleaned up
+        // in StrictMode
+        if (!isRenderedAfterEffect.current) {
           return;
         }
 
-        // Otherwise this is not a dummy destroy, so call the destroy func
-        if (typeof cleanupCallback.current === 'function') {
-          await cleanupCallback.current();
+        const func = await cleanupCallback.current;
+
+        if (typeof func === 'function') {
+          await func();
         }
       })();
     };

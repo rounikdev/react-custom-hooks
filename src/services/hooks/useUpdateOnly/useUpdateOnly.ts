@@ -16,8 +16,10 @@ export const useUpdateOnly = (callback: UpdateCallback, dependencyList: Dependen
 
     return () => {
       (async () => {
-        if (typeof result === 'function') {
-          await result();
+        const func = await result;
+
+        if (typeof func === 'function') {
+          await func();
         }
       })();
     };

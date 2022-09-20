@@ -6,7 +6,7 @@ import { Comparator } from '../../types';
 import { useUpdateOnlyCompare } from '../useUpdateOnlyCompare';
 
 describe('useUpdateOnlyCompare', () => {
-  it("Doesn't run on mount", () => {
+  it.only("Doesn't run on mount", () => {
     const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
       callback,
       otherProp

@@ -8,8 +8,10 @@ export const useUpdate = (callback: UpdateCallback, dependencyList: DependencyLi
 
     return () => {
       (async () => {
-        if (typeof result === 'function') {
-          await result();
+        const func = await result;
+
+        if (typeof func === 'function') {
+          func();
         }
       })();
     };
