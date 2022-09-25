@@ -1,33 +1,26 @@
 import { FC } from 'react';
 
-import { ShowHide, testRender } from '@services/utils';
+import { testRender } from '@services/utils';
 
 import { useUnmountSafe } from '../useUnmountSafe';
 
 describe('useUnmountSafe', () => {
-  it('Calls the callback once on unmounting the host component', () => {
-    const TestComponent: FC<{ callback: () => void; className: string }> = ({
-      callback,
-      className
-    }) => {
+  it('Calls the callback once on unmounting the host component', async () => {
+    const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
       useUnmountSafe(callback);
 
-      return <div className={className}></div>;
+      return null;
     };
 
     const callback = jest.fn();
 
-    const { unmount } = testRender(
-      <ShowHide data="someClass" show={true}>
-        {(show, data) => {
-          return show ? <TestComponent callback={callback} className={data} /> : null;
-        }}
-      </ShowHide>
-    );
+    const { unmount } = testRender(<TestComponent callback={callback} />);
 
     expect(callback).toHaveBeenCalledTimes(0);
 
     unmount();
+
+    await Promise.resolve();
 
     expect(callback).toHaveBeenCalledTimes(1);
   });

@@ -69,13 +69,11 @@ describe('useLastDiffValue', () => {
     expect(await findByText('value: 2 prevValue: 0')).toBeInTheDocument();
   });
 
-  it.only('Returns expected `prevValue` with `comparator` true', async () => {
+  it('Returns expected `prevValue` after rerender with the same `value`', async () => {
     const TestCmp: FC<{
       value: number;
     }> = ({ value }) => {
-      const prevValue = useLastDiffValue(value);
-
-      console.log(typeof prevValue, prevValue);
+      const prevValue = useLastDiffValue(value, true);
 
       return (
         <p data-test="read-value">
@@ -84,7 +82,7 @@ describe('useLastDiffValue', () => {
       );
     };
 
-    const { findByText, getByDataTest, rerender } = testRender(<TestCmp value={1} />);
+    const { findByText, rerender } = testRender(<TestCmp value={1} />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(await findByText('value: 1 prevValue:')).toBeInTheDocument();
@@ -97,6 +95,6 @@ describe('useLastDiffValue', () => {
     rerender(<TestCmp value={2} />);
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
-    expect(await findByText('value: 2 prevValue:')).toBeInTheDocument();
+    expect(await findByText('value: 2 prevValue: 1')).toBeInTheDocument();
   });
 });

@@ -12,11 +12,8 @@ export const useLastDiffValue = <T>(
   comparator?: boolean | Comparator<T, T>
 ): T | undefined => {
   const valueListRef = useRef<T[]>([]);
-  const hasDiffValueRef = useRef(false);
 
   valueListRef.current.unshift(value);
-
-  console.log('BEFORE valueListRef.current: ', valueListRef.current);
 
   const diffValue = valueListRef.current.find((listValue) => {
     let hasDiffValue: boolean;
@@ -29,22 +26,12 @@ export const useLastDiffValue = <T>(
       hasDiffValue = listValue !== value;
     }
 
-    if (hasDiffValue) {
-      valueListRef.current = [value];
-    }
-
-    hasDiffValueRef.current = hasDiffValue;
-
     return hasDiffValue;
   });
 
-  if (!hasDiffValueRef.current) {
-    valueListRef.current = valueListRef.current.length
-      ? [valueListRef.current[0]]
-      : valueListRef.current;
+  if (typeof diffValue !== 'undefined') {
+    valueListRef.current = [value, diffValue];
   }
-
-  console.log('AFTER valueListRef.current: ', valueListRef.current);
 
   return diffValue;
 };

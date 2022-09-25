@@ -1,4 +1,7 @@
-import { RAFIdInfo } from './types';
+import { DependencyList } from 'react';
+import { dequal } from 'dequal';
+
+import { HasDiff, RAFIdInfo } from './types';
 
 export class GlobalModel {
   static deepClone = (object: unknown) => JSON.parse(JSON.stringify(object));
@@ -66,5 +69,22 @@ export class GlobalModel {
     rafIdInfo.id = requestAnimationFrame(wait);
 
     return rafIdInfo;
+  };
+
+  static hasDependencyListDiff = ({ comparator, prevValue, value }: HasDiff<DependencyList>) => {
+    let hasChange: boolean;
+
+    if (typeof comparator === 'function') {
+      hasChange = comparator({
+        newValue: value,
+        prevValue: prevValue
+      });
+    } else if (comparator) {
+      hasChange = !dequal(prevValue, value);
+    } else {
+      hasChange = value.some((dep, depIndex) => dep !== prevValue[depIndex]);
+    }
+
+    return hasChange;
   };
 }

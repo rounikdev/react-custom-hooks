@@ -1,8 +1,10 @@
 export * from './types';
 
 export * from './useBeforeFirstRender/useBeforeFirstRender';
+export * from './useCallbackExtended/useCallbackExtended';
 export * from './useClass/useClass';
 export * from './useContextReducer/useContextReducer';
+export * from './useDependencyList/useDependencyList';
 export * from './useIsMounted/useIsMounted';
 export * from './useKeyboardEvent/useKeyboardEvent';
 export * from './useLastDiffValue/useLastDiffValue';
