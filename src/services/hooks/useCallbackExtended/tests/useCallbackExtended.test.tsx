@@ -31,7 +31,8 @@ describe('useCallbackExtended', () => {
     expect(result.current()).toBe(20);
   });
 
-  it('Returns the same function when default comparator is enabled (deep equality)', async () => {
+  // eslint-disable-next-line max-len
+  it('Returns the same function when the default comparator is enabled (deep equality)', async () => {
     let callback = () => 10;
 
     const { rerender, result } = renderHook(
@@ -50,7 +51,7 @@ describe('useCallbackExtended', () => {
     expect(result.current()).toBe(10);
   });
 
-  it.only('Returns a new function based on custom comparator', async () => {
+  it.only('Returns a new function based on a custom comparator', async () => {
     let callback = () => 10;
 
     const { rerender, result } = renderHook(
