@@ -6,37 +6,31 @@ import { useUpdate } from '../useUpdate';
 
 describe('useUpdate', () => {
   it('Runs on mount and when dependency changes', () => {
-    const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
-      callback,
-      otherProp
-    }) => {
+    const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
       useUpdate(callback, [callback]);
 
-      return <div>{otherProp}</div>;
+      return null;
     };
 
     const callback = jest.fn();
 
-    const { rerender } = testRender(<TestComponent callback={callback} otherProp="valueA" />);
+    const { rerender } = testRender(<TestComponent callback={callback} />);
 
     expect(callback).toHaveBeenCalledTimes(1);
 
     const updatedCallback = jest.fn();
 
-    rerender(<TestComponent callback={updatedCallback} otherProp="valueA" />);
+    rerender(<TestComponent callback={updatedCallback} />);
 
     expect(callback).toHaveBeenCalledTimes(1);
     expect(updatedCallback).toHaveBeenCalledTimes(1);
   });
 
   it("Doesn't run when other prop changes", () => {
-    const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
-      callback,
-      otherProp
-    }) => {
+    const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({ callback }) => {
       useUpdate(callback, [callback]);
 
-      return <div>{otherProp}</div>;
+      return null;
     };
 
     const callback = jest.fn();
@@ -55,27 +49,22 @@ describe('useUpdate', () => {
       callback,
       otherProp
     }) => {
-      useUpdate(callback, [callback]);
+      useUpdate(callback, [callback, otherProp]);
 
-      return <div>{otherProp}</div>;
+      return null;
     };
 
     const callbackReturn = jest.fn();
-    let callback = jest.fn(() => Promise.resolve(callbackReturn));
+    const callback = jest.fn(() => Promise.resolve(callbackReturn));
 
     const { rerender } = testRender(<TestComponent callback={callback} otherProp="valueA" />);
 
     expect(callback).toHaveBeenCalledTimes(1);
-    // TODO inner mock function not being called
-    // expect(callbackReturn).toHaveBeenCalledTimes(1);
-
-    const updatedCallbackReturn = jest.fn();
-    callback = jest.fn(() => updatedCallbackReturn) as jest.Mock;
 
     rerender(<TestComponent callback={callback} otherProp="valueB" />);
 
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledTimes(2);
     // TODO inner mock function not being called
-    // expect(updatedCallbackReturn).toHaveBeenCalledTimes(1);
+    // expect(callbackReturn).toHaveBeenCalledTimes(1);
   });
 });
