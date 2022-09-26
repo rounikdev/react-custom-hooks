@@ -1,8 +1,7 @@
 import { DependencyList, useCallback } from 'react';
 
-import { useDependencyList } from '../useDependencyList/useDependencyList';
-
 import { Comparator } from '../types';
+import { useDependencyList } from '../useDependencyList/useDependencyList';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useCallbackExtended = <T extends (...args: any[]) => void>(

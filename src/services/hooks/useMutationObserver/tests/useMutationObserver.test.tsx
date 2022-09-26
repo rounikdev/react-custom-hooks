@@ -1,6 +1,6 @@
-import { FC, useRef, useState } from 'react';
 import { waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { FC, useRef, useState } from 'react';
 
 import { ShowHide, testRender } from '@services/utils';
 

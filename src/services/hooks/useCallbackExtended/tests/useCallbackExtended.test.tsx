@@ -1,5 +1,5 @@
 /* eslint-disable testing-library/render-result-naming-convention */
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { useCallbackExtended } from '../useCallbackExtended';
 

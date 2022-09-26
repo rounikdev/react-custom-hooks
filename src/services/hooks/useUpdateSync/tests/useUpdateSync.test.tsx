@@ -1,12 +1,12 @@
-import { FC, useState } from 'react';
 import userEvent from '@testing-library/user-event';
+import { FC, useState } from 'react';
 
 import { testRender } from '@services/utils';
 
 import { useUpdateSync } from '../useUpdateSync';
 
 describe('useNewDiffValue', () => {
-  it('Executes callback on new diff of value', () => {
+  it('Executes callback on new diff of value', async () => {
     const mockCallback = jest.fn();
 
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
@@ -23,11 +23,11 @@ describe('useNewDiffValue', () => {
 
     const { getByDataTest } = testRender(<TestComponent callback={mockCallback} />);
 
-    userEvent.click(getByDataTest('button-update'));
+    await userEvent.click(getByDataTest('button-update'));
 
     expect(mockCallback).toHaveBeenCalledTimes(1);
 
-    userEvent.click(getByDataTest('button-update'));
+    await userEvent.click(getByDataTest('button-update'));
 
     expect(mockCallback).toHaveBeenCalledTimes(2);
   });

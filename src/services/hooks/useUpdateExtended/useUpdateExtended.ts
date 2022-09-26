@@ -1,7 +1,6 @@
 import { DependencyList, useEffect } from 'react';
 
 import { Comparator, UpdateCallback } from '../types';
-
 import { useDependencyList } from '../useDependencyList/useDependencyList';
 
 export const useUpdateExtended = (

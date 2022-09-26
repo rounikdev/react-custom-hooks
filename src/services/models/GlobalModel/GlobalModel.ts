@@ -1,5 +1,5 @@
-import { DependencyList } from 'react';
 import { dequal } from 'dequal';
+import { DependencyList } from 'react';
 
 import { HasDiff, RAFIdInfo } from './types';
 

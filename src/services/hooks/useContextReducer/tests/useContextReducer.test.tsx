@@ -1,5 +1,5 @@
-import { createContext, FC, ReactNode, useContext } from 'react';
 import userEvent from '@testing-library/user-event';
+import { createContext, FC, ReactNode, useContext } from 'react';
 
 import { testRender } from '@services/utils';
 
@@ -13,13 +13,13 @@ enum ActionType {
 }
 
 interface IAddItem {
-  type: ActionType.ADD_ITEM;
   payload: TItemId;
+  type: ActionType.ADD_ITEM;
 }
 
 interface IDeleteItem {
-  type: ActionType.DELETE_ITEM;
   payload: TItemId;
+  type: ActionType.DELETE_ITEM;
 }
 
 type TAction = IAddItem | IDeleteItem;
@@ -95,7 +95,7 @@ export const ItemsProvider: FC<{
 export const useItems = () => useContext(ItemsContext);
 
 describe('useContextReducer', () => {
-  it('Provides the correct value for the Provider', () => {
+  it('Provides the correct value for the Provider', async () => {
     const TestComponent: FC = () => {
       const {
         actions: { addItem, deleteItem },
@@ -121,12 +121,12 @@ describe('useContextReducer', () => {
       </ItemsProvider>
     );
 
-    userEvent.click(getByDataTest('add-item'));
+    await userEvent.click(getByDataTest('add-item'));
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(getByText('[1]')).toBeInTheDocument();
 
-    userEvent.click(getByDataTest('delete-item'));
+    await userEvent.click(getByDataTest('delete-item'));
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(getByText('[]')).toBeInTheDocument();

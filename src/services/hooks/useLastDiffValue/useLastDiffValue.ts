@@ -1,11 +1,7 @@
-import { useRef } from 'react';
 import { dequal } from 'dequal';
+import { useRef } from 'react';
 
 import { Comparator } from '../types';
-
-// -> 7 [7] => undefined
-// -> 5 [5, 7] => 7
-// -> 5 [5, 7] => 7
 
 export const useLastDiffValue = <T>(
   value: T,
@@ -28,10 +24,6 @@ export const useLastDiffValue = <T>(
 
     return hasDiffValue;
   });
-
-  if (typeof diffValue !== 'undefined') {
-    valueListRef.current = [value, diffValue];
-  }
 
   return diffValue;
 };

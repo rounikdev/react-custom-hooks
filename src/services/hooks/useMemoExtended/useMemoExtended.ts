@@ -1,8 +1,7 @@
 import { DependencyList, useMemo } from 'react';
 
-import { useDependencyList } from '../useDependencyList/useDependencyList';
-
 import { Comparator } from '../types';
+import { useDependencyList } from '../useDependencyList/useDependencyList';
 
 export const useMemoExtended = <T>(
   factory: () => T,

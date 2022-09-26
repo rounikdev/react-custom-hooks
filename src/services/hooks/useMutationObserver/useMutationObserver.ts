@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import { UseMutationObserverConfig } from '../types';
 
 export const useMutationObserver = ({
