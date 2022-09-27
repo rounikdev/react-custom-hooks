@@ -53,7 +53,7 @@ describe('useUpdateOnlyExtended', () => {
     expect(callback).toHaveBeenCalledTimes(0);
   });
 
-  it('Calls `callback` return function', () => {
+  it.only('Calls `callback` return function', async () => {
     const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
       callback,
       otherProp
@@ -73,8 +73,13 @@ describe('useUpdateOnlyExtended', () => {
     rerender(<TestComponent callback={callback} otherProp="valueB" />);
 
     expect(callback).toHaveBeenCalledTimes(1);
-    // TODO inner mock function not being called
-    // expect(callbackReturn).toHaveBeenCalledTimes(1);
+
+    rerender(<TestComponent callback={callback} otherProp="valueC" />);
+
+    expect(callback).toHaveBeenCalledTimes(2);
+
+    await Promise.resolve();
+    expect(callbackReturn).toHaveBeenCalledTimes(1);
   });
 
   it('Runs with the default comparator', () => {
