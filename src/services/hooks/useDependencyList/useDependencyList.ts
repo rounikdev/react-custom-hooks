@@ -14,8 +14,8 @@ export const useDependencyList = (
   if (
     GlobalModel.hasDependencyListDiff({
       comparator,
-      prevValue: currentDependencyListRef.current,
-      value: dependencyList
+      newValue: dependencyList,
+      prevValue: currentDependencyListRef.current
     })
   ) {
     currentDependencyListRef.current = dependencyList;

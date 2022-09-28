@@ -6,6 +6,6 @@ export type RAFIdInfo = {
 
 export interface HasDiff<T> {
   comparator?: boolean | Comparator<T, T>;
+  newValue: T;
   prevValue: T;
-  value: T;
 }

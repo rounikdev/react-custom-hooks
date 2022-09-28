@@ -71,18 +71,18 @@ export class GlobalModel {
     return rafIdInfo;
   };
 
-  static hasDependencyListDiff = ({ comparator, prevValue, value }: HasDiff<DependencyList>) => {
+  static hasDependencyListDiff = ({ comparator, newValue, prevValue }: HasDiff<DependencyList>) => {
     let hasChange: boolean;
 
     if (typeof comparator === 'function') {
       hasChange = comparator({
-        newValue: value,
-        prevValue: prevValue
+        newValue,
+        prevValue
       });
     } else if (comparator) {
-      hasChange = !dequal(prevValue, value);
+      hasChange = !dequal(newValue, prevValue);
     } else {
-      hasChange = value.some((dep, depIndex) => dep !== prevValue[depIndex]);
+      hasChange = newValue.some((dep, depIndex) => dep !== prevValue[depIndex]);
     }
 
     return hasChange;

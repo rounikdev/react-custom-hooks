@@ -17,7 +17,7 @@ describe('GlobalModel', () => {
 
   it('hasDependencyListDiff', () => {
     const test = [
-      { expected: false, input: { comparator: true, prevValue: [0], value: [0] } },
+      { expected: false, input: { comparator: true, newValue: [0], prevValue: [0] } },
       {
         expected: false,
         input: {
@@ -26,15 +26,15 @@ describe('GlobalModel', () => {
             DependencyList,
             DependencyList
           >,
-          prevValue: [0],
-          value: [0]
+          newValue: [0],
+          prevValue: [0]
         }
       },
       {
         expected: false,
         input: {
-          prevValue: [0],
-          value: [0]
+          newValue: [0],
+          prevValue: [0]
         }
       }
     ];
