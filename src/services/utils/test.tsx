@@ -1,5 +1,3 @@
-import { FC, JSXElementConstructor, ReactElement } from 'react';
-
 import {
   buildQueries,
   Matcher,
@@ -10,6 +8,7 @@ import {
   render,
   RenderOptions
 } from '@testing-library/react';
+import { FC, JSXElementConstructor, ReactElement } from 'react';
 
 import { ShowHideProps } from './types';
 

@@ -19,7 +19,7 @@ export const useUpdateOnly = (callback: UpdateCallback, dependencyList: Dependen
         const func = await result;
 
         if (typeof func === 'function') {
-          func();
+          await func();
         }
       })();
     };

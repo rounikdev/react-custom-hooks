@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+
 import { UseKeyboardEventConfig } from '../types';
 
 export const useKeyboardEvent = ({ eventType, handler }: UseKeyboardEventConfig): void => {

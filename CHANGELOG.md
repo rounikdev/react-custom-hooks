@@ -1,3 +1,16 @@
+# [0.1.10]() - 2022-09-28
+
+### Added
+
+- `useCallbackExtended` hook
+- `useDependencyList` hook
+- `useEffectOnce` hook
+- `useMemoExtended` hook
+- `useMountSafe` hook
+- `useUnmountSafe` hook
+- `useUpdateExtended` hook
+- `useUpdateOnlyExtended` hook
+
 # [0.1.8]() - 2022-06-01
 
 ### Fixed

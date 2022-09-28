@@ -1,14 +1,10 @@
 {
   "endOfLine": "auto",
+  "importOrder": ["^@services(.*)|^@services/(.*)", "^[./]"],
+  "importOrderCaseInsensitive": true,
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
   "printWidth": 100,
   "singleQuote": true,
-  "overrides": [
-    {
-      "files": "*.scss",
-      "options": {
-        "singleQuote": false
-      }
-    }
-  ],
   "trailingComma": "none"
 }
