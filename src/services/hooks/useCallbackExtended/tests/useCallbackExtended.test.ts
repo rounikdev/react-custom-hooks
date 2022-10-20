@@ -51,7 +51,7 @@ describe('useCallbackExtended', () => {
     expect(result.current()).toBe(10);
   });
 
-  it.only('Returns a new function based on a custom comparator', async () => {
+  it('Returns a new function based on a custom comparator', async () => {
     let callback = () => 10;
 
     const { rerender, result } = renderHook(

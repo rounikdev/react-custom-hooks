@@ -53,7 +53,7 @@ describe('useUpdateOnlyExtended', () => {
     expect(callback).toHaveBeenCalledTimes(0);
   });
 
-  it.only('Calls `callback` return function', async () => {
+  it('Calls `callback` return function', async () => {
     const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
       callback,
       otherProp

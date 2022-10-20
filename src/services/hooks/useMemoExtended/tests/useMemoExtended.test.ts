@@ -51,7 +51,7 @@ describe('useMemoExtended', () => {
     expect(result.current).toBe(0);
   });
 
-  it.only('Returns a new value based on a custom comparator', async () => {
+  it('Returns a new value based on a custom comparator', async () => {
     let mockValue = 0;
 
     const { rerender, result } = renderHook(
