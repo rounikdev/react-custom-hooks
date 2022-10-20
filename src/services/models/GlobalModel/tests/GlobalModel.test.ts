@@ -16,6 +16,10 @@ describe('GlobalModel', () => {
   });
 
   it('hasDependencyListDiff', () => {
+    expect(() => {
+      GlobalModel.hasDependencyListDiff({ newValue: [0], prevValue: [0, 1] });
+    }).toThrow('Inconsistent length of dependency list array');
+
     const test = [
       { expected: false, input: { comparator: true, newValue: [0], prevValue: [0] } },
       {

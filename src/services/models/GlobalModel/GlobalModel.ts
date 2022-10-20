@@ -72,6 +72,10 @@ export class GlobalModel {
   };
 
   static hasDependencyListDiff = ({ comparator, newValue, prevValue }: HasDiff<DependencyList>) => {
+    if (newValue.length !== prevValue.length) {
+      throw new Error('Inconsistent length of dependency list array');
+    }
+
     let hasChange: boolean;
 
     if (typeof comparator === 'function') {
