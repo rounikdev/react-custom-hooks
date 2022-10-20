@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-
 import { CleanupCallback } from '../types';
+import { useEffectOnce } from '../useEffectOnce/useEffectOnce';
 import { useUpdatedRef } from '../useUpdatedRef/useUpdatedRef';
 
 export const useUnmount = (cleanupCallback: CleanupCallback): void => {
   const updatedCleanupCallback = useUpdatedRef(cleanupCallback);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => updatedCleanupCallback.current, []);
+  useEffectOnce(() => {
+    return updatedCleanupCallback.current;
+  });
 };

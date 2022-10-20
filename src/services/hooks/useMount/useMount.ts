@@ -1,10 +1,6 @@
-import { useEffect } from 'react';
-
 import { MountCallback } from '../types';
+import { useEffectOnce } from '../useEffectOnce/useEffectOnce';
 
-export const useMount = (callback: MountCallback): void => {
-  useEffect(() => {
-    callback();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+export const useMount = (callback: MountCallback) => {
+  useEffectOnce(callback);
 };

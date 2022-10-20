@@ -4,7 +4,7 @@ import { testRender } from '@services/utils';
 
 import { useUpdate } from '../useUpdate';
 
-describe('useUpdate', () => {
+describe('useUpdateExtended', () => {
   it('Runs on mount and when dependency changes', () => {
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
       useUpdate(callback, [callback]);
@@ -67,5 +67,53 @@ describe('useUpdate', () => {
 
     await Promise.resolve();
     expect(callbackReturn).toHaveBeenCalledTimes(1);
+  });
+
+  it('Runs with the default comparator', () => {
+    const TestComponent: FC<{ callback: () => void; otherProp: Record<string, number> }> = ({
+      callback,
+      otherProp
+    }) => {
+      useUpdate(callback, [callback, otherProp], true);
+
+      return null;
+    };
+
+    const callback = jest.fn();
+
+    const { rerender } = testRender(<TestComponent callback={callback} otherProp={{ a: 1 }} />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+
+    rerender(<TestComponent callback={callback} otherProp={{ a: 1 }} />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
+
+  it('Runs with a custom comparator', () => {
+    const TestComponent: FC<{ callback: () => void; otherProp: number }> = ({
+      callback,
+      otherProp
+    }) => {
+      useUpdate(callback, [otherProp], ({ newValue }) =>
+        newValue.every((dep) => (dep as number) > 0)
+      );
+
+      return null;
+    };
+
+    const callback = jest.fn();
+
+    const { rerender } = testRender(<TestComponent callback={callback} otherProp={1} />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+
+    rerender(<TestComponent callback={callback} otherProp={2} />);
+
+    expect(callback).toHaveBeenCalledTimes(2);
+
+    rerender(<TestComponent callback={callback} otherProp={0} />);
+
+    expect(callback).toHaveBeenCalledTimes(2);
   });
 });

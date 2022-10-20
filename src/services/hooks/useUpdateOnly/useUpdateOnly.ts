@@ -1,14 +1,18 @@
 import { DependencyList, useEffect, useRef } from 'react';
 
-import { UpdateCallback } from '../types';
+import { Comparator, UpdateCallback } from '../types';
+import { useDependencyList } from '../useDependencyList/useDependencyList';
 
-export const useUpdateOnly = (callback: UpdateCallback, dependencyList: DependencyList): void => {
-  const mountRef = useRef(false);
+export const useUpdateOnly = (
+  callback: UpdateCallback,
+  dependencyList: DependencyList,
+  comparator?: boolean | Comparator<DependencyList, DependencyList>
+): void => {
+  const initialDependencyListRef = useRef(dependencyList);
+  const dependencies = useDependencyList(dependencyList, comparator);
 
   useEffect(() => {
-    if (!mountRef.current) {
-      mountRef.current = true;
-
+    if (initialDependencyListRef.current === dependencies) {
       return;
     }
 
@@ -24,5 +28,5 @@ export const useUpdateOnly = (callback: UpdateCallback, dependencyList: Dependen
       })();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, dependencyList);
+  }, dependencies);
 };
