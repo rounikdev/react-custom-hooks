@@ -87,4 +87,19 @@ export class GlobalModel {
 
     return hasChange;
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static hasValueDiff = ({ comparator, newValue, prevValue }: HasDiff<any>) => {
+    let hasDiff: boolean;
+
+    if (typeof comparator === 'function') {
+      hasDiff = comparator({ newValue, prevValue });
+    } else if (comparator) {
+      hasDiff = !dequal(newValue, prevValue);
+    } else {
+      hasDiff = newValue !== prevValue;
+    }
+
+    return hasDiff;
+  };
 }
