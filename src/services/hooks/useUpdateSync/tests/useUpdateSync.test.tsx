@@ -32,7 +32,7 @@ describe('useNewDiffValue', () => {
     expect(mockCallback).toHaveBeenCalledTimes(2);
   });
 
-  it('Executes callback on a new value diff with `comparator`', async () => {
+  it('Executes callback on a new value diff with `comparator` function', async () => {
     const mockCallback = jest.fn();
 
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
