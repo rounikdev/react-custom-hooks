@@ -5,12 +5,12 @@
 - `useLayoutUpdate` hook
 - `useLayoutUpdateOnly` hook
 
-### Safe
+#### Safe
 
 - `useMount` hook
 - `useUnmount` hook
 
-### Extended
+#### Extended
 
 - `useUpdate` hook
 - `useUpdateOnly` hook
