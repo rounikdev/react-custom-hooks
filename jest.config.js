@@ -15,7 +15,7 @@ module.exports = {
     '^@services(.*)$': '<rootDir>/src/services$1'
   },
   reporters: ['default'],
-  setupFilesAfterEnv: ['<rootDir>/jest-setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.js', 'jest-extended/all'],
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: [],
   testRegex: 'tests/.*.test.(ts|tsx)$',

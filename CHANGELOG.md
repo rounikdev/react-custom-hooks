@@ -1,3 +1,22 @@
+# [0.1.11]() - 2022-10-28
+
+### Added
+
+- `useLayoutUpdate` hook
+- `useLayoutUpdateOnly` hook
+
+### Safe
+
+- `useMount` hook
+- `useUnmount` hook
+
+### Extended
+
+- `useUpdate` hook
+- `useUpdateOnly` hook
+- `useUpdatedRef` hook
+- `useUpdateSync` hook
+
 # [0.1.10]() - 2022-09-28
 
 ### Added

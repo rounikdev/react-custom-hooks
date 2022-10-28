@@ -4,7 +4,7 @@ import { testRender } from '@services/utils';
 
 import { useUpdateOnly } from '../useUpdateOnly';
 
-describe('useUpdateOnlyExtended', () => {
+describe('useUpdateOnly', () => {
   it("Doesn't run on mount", () => {
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
       useUpdateOnly(callback, [callback]);

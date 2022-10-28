@@ -5,7 +5,7 @@ import { testRender } from '@services/utils';
 
 import { useUpdateSync } from '../useUpdateSync';
 
-describe('useNewDiffValue', () => {
+describe('useUpdateSync', () => {
   it('Executes callback on a new value diff without `comparator`', async () => {
     const mockCallback = jest.fn();
 

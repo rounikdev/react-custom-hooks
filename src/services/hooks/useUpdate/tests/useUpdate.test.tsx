@@ -4,7 +4,7 @@ import { testRender } from '@services/utils';
 
 import { useUpdate } from '../useUpdate';
 
-describe('useUpdateExtended', () => {
+describe('useUpdate', () => {
   it('Runs on mount and when dependency changes', () => {
     const TestComponent: FC<{ callback: () => void }> = ({ callback }) => {
       useUpdate(callback, [callback]);
