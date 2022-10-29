@@ -6,7 +6,7 @@ import { useUpdate } from '../../useUpdate/useUpdate';
 import { useLayoutUpdate } from '../useLayoutUpdate';
 
 describe('useLayoutUpdate', () => {
-  it('Runs before `useEffect`', async () => {
+  it('Runs before `useUpdate`', async () => {
     const TestComponent: FC<{
       callback: () => void;
       callbackUseEffect: () => void;

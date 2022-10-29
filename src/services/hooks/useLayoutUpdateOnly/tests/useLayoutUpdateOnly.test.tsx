@@ -6,7 +6,7 @@ import { useUpdateOnly } from '../../useUpdateOnly/useUpdateOnly';
 import { useLayoutUpdateOnly } from '../useLayoutUpdateOnly';
 
 describe('useLayoutUpdateOnly', () => {
-  it('Runs before `useEffect`', async () => {
+  it('Runs before `useUpdateOnly`', async () => {
     const TestComponent: FC<{
       callback: () => void;
       callbackUseEffect: () => void;
