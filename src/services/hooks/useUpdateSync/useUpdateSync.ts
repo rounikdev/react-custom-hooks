@@ -1,9 +1,17 @@
 import { useRef } from 'react';
 
-export const useUpdateSync = (callback: () => void, value: unknown) => {
+import { GlobalModel } from '@services/models';
+
+import { Comparator } from '../types';
+
+export const useUpdateSync = <T>(
+  callback: () => void,
+  value: T,
+  comparator?: boolean | Comparator<T, T>
+) => {
   const refDiff = useRef(value);
 
-  if (value !== refDiff.current) {
+  if (GlobalModel.hasValueDiff({ comparator, newValue: value, prevValue: refDiff.current })) {
     callback();
 
     refDiff.current = value;

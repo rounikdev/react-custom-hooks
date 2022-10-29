@@ -53,7 +53,7 @@ describe('useUpdateOnly', () => {
     expect(callback).toHaveBeenCalledTimes(0);
   });
 
-  it.only('Calls `callback` return function', async () => {
+  it('Calls `callback` return function', async () => {
     const TestComponent: FC<{ callback: () => void; otherProp: string }> = ({
       callback,
       otherProp
@@ -80,5 +80,57 @@ describe('useUpdateOnly', () => {
 
     await Promise.resolve();
     expect(callbackReturn).toHaveBeenCalledTimes(1);
+  });
+
+  it('Runs with the default comparator', () => {
+    const TestComponent: FC<{ callback: () => void; otherProp: Record<string, number> }> = ({
+      callback,
+      otherProp
+    }) => {
+      useUpdateOnly(callback, [callback, otherProp], true);
+
+      return null;
+    };
+
+    const callback = jest.fn();
+
+    const { rerender } = testRender(<TestComponent callback={callback} otherProp={{ a: 1 }} />);
+
+    expect(callback).toHaveBeenCalledTimes(0);
+
+    rerender(<TestComponent callback={callback} otherProp={{ a: 1 }} />);
+
+    expect(callback).toHaveBeenCalledTimes(0);
+
+    rerender(<TestComponent callback={callback} otherProp={{ a: 2 }} />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
+
+  it('Runs with a custom comparator', () => {
+    const TestComponent: FC<{ callback: () => void; otherProp: number }> = ({
+      callback,
+      otherProp
+    }) => {
+      useUpdateOnly(callback, [otherProp], ({ newValue }) =>
+        newValue.every((dep) => (dep as number) > 0)
+      );
+
+      return null;
+    };
+
+    const callback = jest.fn();
+
+    const { rerender } = testRender(<TestComponent callback={callback} otherProp={1} />);
+
+    expect(callback).toHaveBeenCalledTimes(0);
+
+    rerender(<TestComponent callback={callback} otherProp={2} />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
+
+    rerender(<TestComponent callback={callback} otherProp={0} />);
+
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });

@@ -19,7 +19,7 @@ describe('useMount', () => {
 
     const updatedCallback = jest.fn();
 
-    rerender(<TestComponent callback={updatedCallback} />);
+    rerender(<TestComponent callback={callback} />);
 
     expect(callback).toHaveBeenCalledTimes(1);
     expect(updatedCallback).toHaveBeenCalledTimes(0);

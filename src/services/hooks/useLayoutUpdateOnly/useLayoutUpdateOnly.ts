@@ -1,16 +1,21 @@
-import { DependencyList, useEffect } from 'react';
+import { DependencyList, useLayoutEffect, useRef } from 'react';
 
 import { Comparator, UpdateCallback } from '../types';
 import { useDependencyList } from '../useDependencyList/useDependencyList';
 
-export const useUpdateExtended = (
+export const useLayoutUpdateOnly = (
   callback: UpdateCallback,
   dependencyList: DependencyList,
   comparator?: boolean | Comparator<DependencyList, DependencyList>
 ): void => {
+  const initialDependencyListRef = useRef(dependencyList);
   const dependencies = useDependencyList(dependencyList, comparator);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    if (initialDependencyListRef.current === dependencies) {
+      return;
+    }
+
     const result = callback();
 
     return () => {

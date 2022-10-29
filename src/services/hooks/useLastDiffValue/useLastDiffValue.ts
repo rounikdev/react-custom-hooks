@@ -1,5 +1,6 @@
-import { dequal } from 'dequal';
 import { useRef } from 'react';
+
+import { GlobalModel } from '@services/models';
 
 import { Comparator } from '../types';
 
@@ -11,19 +12,9 @@ export const useLastDiffValue = <T>(
 
   valueListRef.current.unshift(value);
 
-  const diffValue = valueListRef.current.find((listValue) => {
-    let hasDiffValue: boolean;
-
-    if (typeof comparator === 'function') {
-      hasDiffValue = comparator({ newValue: value, prevValue: listValue });
-    } else if (comparator) {
-      hasDiffValue = !dequal(listValue, value);
-    } else {
-      hasDiffValue = listValue !== value;
-    }
-
-    return hasDiffValue;
-  });
+  const diffValue = valueListRef.current.find((listValue) =>
+    GlobalModel.hasValueDiff({ comparator, newValue: value, prevValue: listValue })
+  );
 
   return diffValue;
 };

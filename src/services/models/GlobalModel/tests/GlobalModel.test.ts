@@ -16,6 +16,10 @@ describe('GlobalModel', () => {
   });
 
   it('hasDependencyListDiff', () => {
+    expect(() => {
+      GlobalModel.hasDependencyListDiff({ newValue: [0], prevValue: [0, 1] });
+    }).toThrow('Inconsistent length of dependency list array');
+
     const test = [
       { expected: false, input: { comparator: true, newValue: [0], prevValue: [0] } },
       {
@@ -42,5 +46,35 @@ describe('GlobalModel', () => {
     test.forEach(({ expected, input }) =>
       expect(GlobalModel.hasDependencyListDiff(input)).toBe(expected)
     );
+  });
+
+  it('hasValueDiff', () => {
+    const test = [
+      {
+        expected: false,
+        // eslint-disable-next-line sort-keys-fix/sort-keys-fix
+        input: { comparator: true, newValue: { b: 20, a: 30 }, prevValue: { a: 30, b: 20 } }
+      },
+      {
+        expected: true,
+        input: {
+          comparator: (({ newValue, prevValue }) => newValue === prevValue - 1) as Comparator<
+            number,
+            number
+          >,
+          newValue: 0,
+          prevValue: 1
+        }
+      },
+      {
+        expected: true,
+        input: {
+          newValue: { a: 30, b: 20 },
+          prevValue: { a: 30, b: 20 }
+        }
+      }
+    ];
+
+    test.forEach(({ expected, input }) => expect(GlobalModel.hasValueDiff(input)).toBe(expected));
   });
 });
