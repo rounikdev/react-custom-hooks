@@ -1,3 +1,10 @@
+# [0.1.12]() - 2022-10-31
+
+### Exposed
+
+- `useLayoutUpdate` hook
+- `useLayoutUpdateOnly` hook
+
 # [0.1.11]() - 2022-10-28
 
 ### Added

@@ -9,6 +9,8 @@ export * from './useEffectOnce/useEffectOnce';
 export * from './useIsMounted/useIsMounted';
 export * from './useKeyboardEvent/useKeyboardEvent';
 export * from './useLastDiffValue/useLastDiffValue';
+export * from './useLayoutUpdate/useLayoutUpdate';
+export * from './useLayoutUpdateOnly/useLayoutUpdateOnly';
 export * from './useMemoExtended/useMemoExtended';
 export * from './useMount/useMount';
 export * from './useMutationObserver/useMutationObserver';
