@@ -10,7 +10,7 @@ import renameNodeModules from 'rollup-plugin-rename-node-modules';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import { typescriptPaths } from 'rollup-plugin-typescript-paths';
-import visualizer from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 const sourceRoot = 'src';
 const outputFolder = 'lib';
@@ -53,13 +53,9 @@ export default [
         tsconfig: 'tsconfig.build.json',
         useTsconfigDeclarationDir: true
       }),
-      ...(typeof visualizer === 'function'
-        ? [
-            visualizer({
-              filename: 'bundle-analysis.html'
-            })
-          ]
-        : [])
+      visualizer({
+        filename: 'bundle-analysis.html'
+      })
     ]
   },
   // This config will combine all d.ts files
