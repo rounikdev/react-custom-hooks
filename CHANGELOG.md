@@ -1,3 +1,10 @@
+# [0.1.13]() - 2022-11-24
+
+### Added
+
+- `useCallbackDebounced` hook
+- `useCallbackDebouncedPromisified` hook
+
 # [0.1.12]() - 2022-10-31
 
 ### Exposed

@@ -7,7 +7,7 @@ jest.useRealTimers();
 describe('useCallbackDebouncedPromisified', () => {
   const TIMEOUT = 200;
 
-  it('Debounces the newly produced function execution', async () => {
+  it('Debounces a function which returns a fulfillable Promise', async () => {
     jest.useFakeTimers();
 
     const mockCallback = jest.fn(() => Promise.resolve());
@@ -27,7 +27,7 @@ describe('useCallbackDebouncedPromisified', () => {
     expect(mockCallback).toBeCalledTimes(1);
   });
 
-  it('Debounces the newly produced function execution', async () => {
+  it('Debounces a function which returns a rejectable Promise', async () => {
     jest.useFakeTimers();
 
     const mockCallback = jest.fn(() => Promise.reject('error'));

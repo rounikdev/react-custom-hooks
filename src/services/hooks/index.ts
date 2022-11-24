@@ -1,6 +1,8 @@
 export * from './types';
 
 export * from './useBeforeFirstRender/useBeforeFirstRender';
+export * from './useCallbackDebounced/useCallbackDebounced';
+export * from './useCallbackDebouncedPromisified/useCallbackDebouncedPromisified';
 export * from './useCallbackExtended/useCallbackExtended';
 export * from './useClass/useClass';
 export * from './useContextReducer/useContextReducer';
