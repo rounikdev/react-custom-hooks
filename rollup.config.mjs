@@ -8,8 +8,8 @@ import dts from 'rollup-plugin-dts';
 import externals from 'rollup-plugin-node-externals';
 import renameNodeModules from 'rollup-plugin-rename-node-modules';
 import { terser } from 'rollup-plugin-terser';
-import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import typescript from 'rollup-plugin-typescript2';
+import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import visualizer from 'rollup-plugin-visualizer';
 
 const sourceRoot = 'src';
@@ -53,9 +53,13 @@ export default [
         tsconfig: 'tsconfig.build.json',
         useTsconfigDeclarationDir: true
       }),
-      visualizer({
-        filename: 'bundle-analysis.html'
-      })
+      ...(typeof visualizer === 'function'
+        ? [
+            visualizer({
+              filename: 'bundle-analysis.html'
+            })
+          ]
+        : [])
     ]
   },
   // This config will combine all d.ts files
