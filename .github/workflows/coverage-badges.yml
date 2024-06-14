@@ -29,7 +29,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: edb83177b0281c3232346072ec773358
+          gistID: 2131013980a09663f74af9ca16d1a7bb
           filename: coverage-unit-statements.json
           label: statements
           message: ${{ fromJson(env.coverageUnit).total.statements.pct }}
@@ -41,7 +41,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: edb83177b0281c3232346072ec773358
+          gistID: 2131013980a09663f74af9ca16d1a7bb
           filename: coverage-unit-branches.json
           label: branches
           message: ${{ fromJson(env.coverageUnit).total.branches.pct }}
@@ -53,7 +53,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: edb83177b0281c3232346072ec773358
+          gistID: 2131013980a09663f74af9ca16d1a7bb
           filename: coverage-unit-functions.json
           label: functions
           message: ${{ fromJson(env.coverageUnit).total.functions.pct }}
@@ -65,7 +65,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
-          gistID: edb83177b0281c3232346072ec773358
+          gistID: 2131013980a09663f74af9ca16d1a7bb
           filename: coverage-unit-lines.json
           label: lines
           message: ${{ fromJson(env.coverageUnit).total.lines.pct }}
