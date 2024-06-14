@@ -1,6 +1,6 @@
 {
   "name": "@rounik/react-custom-hooks",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Collection of React custom hooks",
   "keywords": [
     "React",
@@ -111,10 +111,10 @@
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.0",
     "typedoc": "0.23.21",
-    "typescript": "4.6.4"
+    "typescript": "5.4.5"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
-    "typescript": ">=4.6.4"
+    "typescript": ">=5.4.5"
   }
 }
